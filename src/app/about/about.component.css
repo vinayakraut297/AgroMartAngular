@@ -1,0 +1,140 @@
+/* .about-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    color: #2c3e50;
+    font-size: 36px;
+  }
+  
+  h2 {
+    color: #34495e;
+    font-size: 28px;
+    margin-top: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  ul li {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+   */
+
+   /* Container styles */
+.about-container {
+  max-width: 900px; /* Increase width for more spacious layout */
+  margin: 50px auto; /* Center align with some vertical margin */
+  padding: 30px;
+  background-color: #ffffff; /* White background for clarity */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Main Heading styles */
+.about-container h1 {
+  font-size: 40px;
+  color: #4CAF50; /* A vibrant green to highlight the agriculture theme */
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+/* Sub-heading styles */
+.about-container h2 {
+  font-size: 28px;
+  color: #388E3C; /* A darker shade of green for subheadings */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0; /* Light line for separation */
+  padding-bottom: 8px;
+}
+
+/* Paragraph styles */
+.about-container p {
+  line-height: 1.8; /* Increased line-height for readability */
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #555; /* Slightly lighter color for body text */
+}
+
+/* List styles */
+.about-container ul {
+  list-style-type: none; /* Remove default bullets */
+  padding: 0;
+  margin-top: 10px;
+}
+
+.about-container ul li {
+  background: #f1f8e9; /* Very light green background for each list item */
+  margin-bottom: 12px;
+  padding: 12px 20px;
+  border-left: 6px solid #66BB6A; /* Green left border for emphasis */
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+/* Emphasized text styles */
+.about-container b {
+  color: #388E3C; /* Dark green for emphasized text */
+}
+
+/* Contact Information section */
+.about-container .contact-info {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #e8f5e9; /* Very light green background for the contact section */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* Contact information paragraph styles */
+.contact-info p {
+  margin: 10px 0;
+  font-size: 17px;
+}
+
+/* Hyperlink styles */
+.about-container a {
+  color: #2E7D32; /* Slightly darker green for links */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-container a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+  .about-container {
+      padding: 20px;
+  }
+
+  .about-container h1 {
+      font-size: 32px;
+  }
+
+  .about-container h2 {
+      font-size: 24px;
+  }
+
+  .about-container p,
+  .about-container ul li {
+      font-size: 16px;
+  }
+}

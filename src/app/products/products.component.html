@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <h2 class="text-success text-center">Welcome to Your Organic Medicine Shop</h2>
+    <p class="text-center text-muted">Providing natural solutions for healthier crops.</p>
+
+    <div class="alert alert-info mt-3">
+        <strong>Use of TB Drugs on Crops:</strong> Learn how TB drugs can be safely and effectively used to enhance crop
+        yield and prevent certain plant diseases.
+    </div>
+<br>
+    <!-- Filters and Sorting -->
+    <div class="row my-3">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search Products" [(ngModel)]="searchTerm" (input)="applyFilter()" />
+        </div>
+        <div class="col-md-6">
+            <select class="form-select" [(ngModel)]="selectedSort" (change)="applySort()">
+                <option value="">Sort By</option>
+                <option value="name">Name</option>
+                <option value="priceAsc">Price: Low to High</option>
+                <option value="priceDesc">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Product List -->
+    <div class="row">
+        <div *ngFor="let product of filteredProducts" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card shadow-sm h-100">
+                <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}" />
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ product.name }}</h5>
+                    <p class="card-text text-muted">₹{{ product.price }}</p>
+                    <!-- <button class="btn btn-success w-100">Add to Cart</button> -->
+                    <button class="btn btn-success w-100" (click)="addToCart(product)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <h3>Cart</h3>
+    <ul>
+      <li *ngFor="let item of cart">
+        {{ item.name }} - ₹{{ item.price }}
+      </li>
+    </ul>
+    <p *ngIf="cart.length === 0">No items in the cart yet.</p>
+  </div>
+  

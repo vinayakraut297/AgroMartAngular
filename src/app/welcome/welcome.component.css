@@ -1,0 +1,210 @@
+h2 {
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically (if the container has height) */
+    height: 10vh; /* Centers buttons in the full viewport height */
+  }
+  
+  button {
+    margin: 10px; /* Adds space between the buttons */
+  }
+  
+
+  /* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #85d5a8, #73b3c7);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo img {
+  height: 50px;
+  width: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #4caf50;
+}
+
+.cta button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta button:hover {
+  background-color: #45a049;
+}
+
+/* Section Styles */
+.intro {
+  text-align: center;
+  padding: 50px;
+  /* background: url('assets/farm-background.jpg') no-repeat center center/cover; */
+  background: url('/assets/images/dirt-way-green-field.jpg') no-repeat center center/cover;
+  color: white;
+  position: relative;
+}
+
+.intro h3 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.intro button {
+  padding: 15px 30px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.intro button:hover {
+  background-color: #45a049;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #222;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer .footer-links ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+footer .footer-links a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+footer .footer-links a:hover {
+  color: #4caf50;
+}
+
+footer .social-media {
+  margin: 20px 0;
+}
+
+footer .social-media a {
+  margin: 0 10px;
+}
+
+footer .social-media img {
+  width: 30px;
+  height: 30px;
+}
+
+footer .newsletter input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+footer .newsletter button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer .newsletter button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta button {
+    margin-top: 10px;
+  }
+
+  footer .footer-links ul {
+    flex-direction: column;
+  }
+}
+
+
+.social-media a {
+  display: inline-block;
+  width: 30px; /* Size of the circle */
+  height: 30px; /* Size of the circle */
+  margin: 0 10px; /* Space between the icons */
+  border-radius: 50%; /* Makes the shape circular */
+  overflow: hidden; /* Ensures the image doesn't overflow the circle */
+  background-color: #f1f1f1; /* Background color for the circle */
+  text-align: center; /* Centers the image inside the circle */
+}
+
+.social-media a img {
+  width: 100%; /* Makes the image fill the circle */
+  height: 100%; /* Makes the image fill the circle */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio while filling the circle */
+}
+
+.social-media a:hover {
+  background-color: #ddd; /* Change background color on hover */
+}

@@ -1,0 +1,87 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4">Manage Products</h1>
+
+  <!-- Form for adding/updating a product -->
+  <div class="card shadow p-4 mb-5">
+    <form (submit)="isEditMode ? updateProduct() : addProduct()">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="newProduct.name" name="name"
+            placeholder="Enter product name" required />
+        </div>
+        <br>
+        <div class="col-md-6">
+          <label for="price" class="form-label">Price:</label>
+          <input type="number" class="form-control" id="price" [(ngModel)]="newProduct.price" name="price"
+            placeholder="Enter product price" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea class="form-control" id="description" [(ngModel)]="newProduct.description" name="description" rows="2"
+          placeholder="Enter product description" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input type="number" class="form-control" id="quantity" [(ngModel)]="newProduct.quantity" name="quantity"
+          placeholder="Enter product quantity" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Image URL:</label>
+        <input type="text" class="form-control" id="imageUrl" [(ngModel)]="newProduct.imageUrl" name="imageUrl"
+          placeholder="Enter image URL" />
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">
+          {{ isEditMode ? 'Update' : 'Add' }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary"
+          (click)="isEditMode = false; newProduct = { name: '', description: '', price: 0,quantity:'', imageUrl: '' }"
+          *ngIf="isEditMode">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- List of products -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>
+            <img [src]="product.imageUrl" alt="{{ product.name }}" class="img-thumbnail"
+              style="width: 50px; height: auto;" />
+          </td>
+          <td>{{ product.quantity }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editProduct(product)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteProduct(product.id!)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
