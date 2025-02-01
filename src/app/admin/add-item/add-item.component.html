@@ -1,6 +1,6 @@
 <div class="container my-5">
+  <button class="logout-button" (click)="logout()">Logout</button>
   <h1 class="text-center mb-4">Manage Products</h1>
-
   <!-- Form for adding/updating a product -->
   <div class="card shadow p-4 mb-5">
     <form (submit)="isEditMode ? updateProduct() : addProduct()">

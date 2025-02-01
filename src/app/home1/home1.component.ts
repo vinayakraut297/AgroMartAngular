@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService, Product } from 'src/app/product.service';
 import { environment } from 'src/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home1',
@@ -14,7 +15,7 @@ export class Home1Component implements OnInit {
   organicMedicines: Product[] = [];
   cart: Product[] = [];
 
-  constructor(private http: HttpClient, private productService: ProductService) { }
+  constructor(private http: HttpClient, private productService: ProductService,private router: Router) { }
 
   ngOnInit(): void {
     const user = localStorage.getItem('user');
@@ -56,6 +57,8 @@ export class Home1Component implements OnInit {
     localStorage.removeItem('user'); // Remove user data from local storage
     this.user = null;               // Clear the user object in the component
     alert('You have been logged out.');
+    this.router.navigate(['/welcome']);
+
   }
 
   checkout(): void {

@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
+import { Router } from '@angular/router';
 
 export interface Product {
   id?: number;
@@ -27,7 +28,7 @@ export class AddItemComponent {
   isEditMode: boolean = false;
   editingProductId: number | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -68,5 +69,10 @@ export class AddItemComponent {
     this.productService.deleteProduct(id).subscribe(() => {
       this.products = this.products.filter(product => product.id !== id);
     });
+  }
+  logout(): void {
+    localStorage.removeItem('user');
+    this.router.navigate(['/welcome']);
+
   }
 }
