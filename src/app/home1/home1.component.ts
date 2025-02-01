@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService, Product } from 'src/app/product.service';
-import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-home1',
@@ -9,13 +8,12 @@ import { environment } from 'src/environment';
   styleUrls: ['./home1.component.css']
 })
 export class Home1Component implements OnInit {
-  
   user: any = null;
   organicMedicines: Product[] = [];
   cart: Product[] = [];
 
-  constructor(private http: HttpClient, private productService: ProductService) {}
- private apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient, private productService: ProductService) { }
+
   ngOnInit(): void {
     const user = localStorage.getItem('user');
     this.user = user ? JSON.parse(user) : null;
@@ -30,7 +28,9 @@ export class Home1Component implements OnInit {
 
   addToCart(product: Product): void {
     if (this.user) {
-      this.http.post<{ message: string }>(`${this.apiUrl}/api/cart/add`, {
+
+      // this.http.post<{ message: string }>('http://localhost:8080/api/cart/add', {
+      this.http.post<{ message: string }>('http://13.232.232.145:8080/api/cart/add', {
         userId: this.user.id,
         productId: product.id,
         quantity: 1
@@ -50,12 +50,18 @@ export class Home1Component implements OnInit {
       alert('Please log in to add items to your cart');
     }
   }
+  logout(): void {
+    localStorage.removeItem('user'); // Remove user data from local storage
+    this.user = null;               // Clear the user object in the component
+    alert('You have been logged out.');
+  }
 
   checkout(): void {
     if (this.cart.length > 0) {
       const cartForBill = [...this.cart];
 
-      this.http.post(`${this.apiUrl}/api/cart/checkout`, {
+      // this.http.post('http://localhost:8080/api/cart/checkout', {
+      this.http.post('http://13.232.232.145:8080/api/cart/checkout', {
         userId: this.user.id,
         items: this.cart
       }).subscribe({
