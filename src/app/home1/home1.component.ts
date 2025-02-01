@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService, Product } from 'src/app/product.service';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-home1',
@@ -8,6 +9,7 @@ import { ProductService, Product } from 'src/app/product.service';
   styleUrls: ['./home1.component.css']
 })
 export class Home1Component implements OnInit {
+  private apiUrl = environment.apiUrl;
   user: any = null;
   organicMedicines: Product[] = [];
   cart: Product[] = [];
@@ -30,7 +32,7 @@ export class Home1Component implements OnInit {
     if (this.user) {
 
       // this.http.post<{ message: string }>('http://localhost:8080/api/cart/add', {
-      this.http.post<{ message: string }>('http://13.232.232.145:8080/api/cart/add', {
+      this.http.post<{ message: string }>(`${this.apiUrl}/api/cart/add`, {
         userId: this.user.id,
         productId: product.id,
         quantity: 1
@@ -61,7 +63,7 @@ export class Home1Component implements OnInit {
       const cartForBill = [...this.cart];
 
       // this.http.post('http://localhost:8080/api/cart/checkout', {
-      this.http.post('http://13.232.232.145:8080/api/cart/checkout', {
+      this.http.post(`${this.apiUrl}/api/cart/checkout`, {
         userId: this.user.id,
         items: this.cart
       }).subscribe({
