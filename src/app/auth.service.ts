@@ -14,7 +14,7 @@ export class AuthService {
 
   // Method to register a user
   registerUser(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, userData);
+    return this.http.post(`${this.apiUrl}/api/auth/register`, userData);
   }
   
 }
