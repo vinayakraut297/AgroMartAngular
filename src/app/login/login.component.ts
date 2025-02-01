@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';  // Import HttpClient
 import { Router } from '@angular/router';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  private apiUrl = environment.apiUrl;
   loginForm: FormGroup;
   submitted = false;
   errorMessage: string = '';
@@ -31,7 +33,7 @@ export class LoginComponent {
       password: this.loginForm.value.password
     };
 
-    this.http.post('http://localhost:8080/api/auth/login', loginData, { 
+    this.http.post(`${this.apiUrl}/api/auth/login`, loginData, { 
         responseType: 'text' 
       })
       .subscribe({

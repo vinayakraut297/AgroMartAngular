@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment';
 
 interface Product {
   id: number;
@@ -16,6 +17,7 @@ interface Product {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   user: any = null;
   organicMedicines: Product[] = [
     { id: 1, name: 'Organic Pesticide', description: 'Effective natural pesticide for a variety of crops.', price: 12.99, imageUrl: 'assets/images/organic-pesticide.jpg' },
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
       console.log('User ID:', this.user.id);
       console.log('Product ID:', product.id);
 
-      this.http.post<{ message: string }>('http://localhost:8080/api/cart/add', {
+      this.http.post<{ message: string }>(`${this.apiUrl}/api/cart/add`, {
         userId: this.user.id,
         productId: product.id,
         quantity: 1
@@ -61,7 +63,7 @@ export class HomeComponent implements OnInit {
   // View the cart
   viewCart(): void {
     if (this.user) {
-      this.http.get<Product[]>(`http://localhost:8080/api/cart/${this.user.id}`).subscribe({
+      this.http.get<Product[]>(`${this.apiUrl}/api/cart/${this.user.id}`).subscribe({
         next: (cartItems) => {
           this.cart = cartItems;
           alert('Cart updated');
@@ -150,7 +152,7 @@ checkout(): void {
     // Create a copy of the current cart for the bill before clearing it
     const cartForBill = [...this.cart];
 
-    this.http.post('http://localhost:8080/api/cart/checkout', {
+    this.http.post(`${this.apiUrl}/api/cart/checkout`, {
       userId: this.user.id,
       items: this.cart
     }).subscribe({
