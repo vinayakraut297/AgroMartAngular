@@ -47,11 +47,15 @@ nav ul {
   gap: 20px;
 }
 
+
 nav a {
   text-decoration: none;
   font-size: 18px;
-  color: #333;
-  transition: color 0.3s ease;
+  font-weight: bold;
+  color: rgb(10, 9, 9); /* White text */
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
 
 nav a:hover {

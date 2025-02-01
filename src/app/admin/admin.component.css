@@ -1,4 +1,13 @@
 /* login.component.css */
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/assets/images/login-register.jpg') no-repeat center center/cover;
+}
+
 .login-container {
     width: 300px;
     margin: 0 auto;

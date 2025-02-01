@@ -1,4 +1,11 @@
 /* Registration Container */
+.login-wrapper {
+  /* height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+  background: url('/assets/images/login-register.jpg') no-repeat center center/cover;
+}
 .registration-container {
   max-width: 400px;
   margin: 0 auto;
