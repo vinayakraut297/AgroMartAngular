@@ -1,10 +1,10 @@
-<header>
+<!-- <header>
   <div class="logo">
     <img src="assets/images/logo.png" alt="AgroMart Logo">
   </div>
   <nav>
     <ul>
-           <li><a routerLink="/welcome">Home</a></li>
+      <li><a routerLink="/welcome">Home</a></li>
       <li><a routerLink="/about">About</a></li>
       <li><a routerLink="/products">Products</a></li>
       <li><a routerLink="/register">Register</a></li>
@@ -12,11 +12,38 @@
       <li><a routerLink="/contact">Contact</a></li>
       <li><a routerLink="/admin">Admin</a></li>
     </ul>
-  </nav>  
+  </nav>
+  <div class="cta">
+    <button onclick="window.location.href='/products'">Explore Products</button>
+  </div>
+</header> -->
+
+
+<header>
+  <div class="logo">
+    <img src="assets/images/logo.png" alt="AgroMart Logo">
+  </div>
+  
+  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+
+  <nav id="navbar">
+    <ul>
+      <li><a routerLink="/welcome">Home</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><a routerLink="/products">Products</a></li>
+      <li><a routerLink="/register">Register</a></li>
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/contact">Contact</a></li>
+      <li><a routerLink="/admin">Admin</a></li>
+    </ul>
+  </nav>
+  
   <div class="cta">
     <button onclick="window.location.href='/products'">Explore Products</button>
   </div>
 </header>
+
 
 <!-- Main Content Section -->
 <section class="intro">
@@ -28,9 +55,10 @@
 <footer>
   <section class="about-snippet">
     <h2>About AgroMart</h2>
-    <p>AgroMart connects farmers with consumers to deliver fresh farm-to-table products. <a routerLink="/about">Learn more</a></p>
+    <p>AgroMart connects farmers with consumers to deliver fresh farm-to-table products. <a routerLink="/about">Learn
+        more</a></p>
   </section>
-  
+
   <div class="footer-links">
     <ul>
       <li><a href="/about">About Us</a></li>
@@ -40,9 +68,11 @@
     </ul>
   </div>
   <div class="social-media">
-    <a href="https://facebook.com/agromart" target="_blank"><img src="assets/images/facebook-icon.png" alt="Facebook"></a>
+    <a href="https://facebook.com/agromart" target="_blank"><img src="assets/images/facebook-icon.png"
+        alt="Facebook"></a>
     <a href="https://twitter.com/agromart" target="_blank"><img src="assets/images/twitter-icon.png" alt="Twitter"></a>
-    <a href="https://instagram.com/agromart" target="_blank"><img src="assets/images/instagram-icon.png" alt="Instagram"></a>
+    <a href="https://instagram.com/agromart" target="_blank"><img src="assets/images/instagram-icon.png"
+        alt="Instagram"></a>
   </div>
   <div class="contact-info">
     <p>Contact Us: <b>support&#64;agromart.com</b></p>
@@ -54,5 +84,3 @@
     <button>Subscribe</button>
   </div>
 </footer>
-
-

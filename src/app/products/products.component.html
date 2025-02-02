@@ -1,50 +1,44 @@
-<div class="container mt-4">
-    <h2 class="text-success text-center">Welcome to Your Organic Medicine Shop</h2>
-    <p class="text-center text-muted">Providing natural solutions for healthier crops.</p>
-
-    <div class="alert alert-info mt-3">
-        <strong>Use of TB Drugs on Crops:</strong> Learn how TB drugs can be safely and effectively used to enhance crop
-        yield and prevent certain plant diseases.
+<div class="home-container">
+    <!-- User Profile Section -->
+    <div class="user-profile" *ngIf="user">
+      <h2>Welcome, {{ user.name }}</h2>
+      <button class="logout-button" (click)="logout()">Logout</button>
     </div>
-<br>
-    <!-- Filters and Sorting -->
-    <div class="row my-3">
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Search Products" [(ngModel)]="searchTerm" (input)="applyFilter()" />
-        </div>
-        <div class="col-md-6">
-            <select class="form-select" [(ngModel)]="selectedSort" (change)="applySort()">
-                <option value="">Sort By</option>
-                <option value="name">Name</option>
-                <option value="priceAsc">Price: Low to High</option>
-                <option value="priceDesc">Price: High to Low</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Product List -->
-    <div class="row">
-        <div *ngFor="let product of filteredProducts" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card shadow-sm h-100">
-                <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}" />
-                <div class="card-body">
-                    <h5 class="card-title text-primary">{{ product.name }}</h5>
-                    <p class="card-text text-muted">₹{{ product.price }}</p>
-                    <!-- <button class="btn btn-success w-100">Add to Cart</button> -->
-                    <button class="btn btn-success w-100" (click)="addToCart(product)">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="mt-4">
-    <h3>Cart</h3>
-    <ul>
-      <li *ngFor="let item of cart">
-        {{ item.name }} - ₹{{ item.price }}
-      </li>
-    </ul>
-    <p *ngIf="cart.length === 0">No items in the cart yet.</p>
-  </div>
   
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Welcome to Your Organic Medicine Shop</h1>
+        <p>Providing natural solutions for healthier crops.</p>
+        <button class="shop-button">Shop Now</button>
+      </div>
+    </div>
+  
+    <!-- Organic Agricultural Medicines Section -->
+    <section class="organic-medicines-section">
+      <h2>Organic Agricultural Medicines</h2>
+      <div class="medicine-grid">
+        <div class="medicine-card" *ngFor="let product of organicMedicines">
+          <img [src]="product.imageUrl" alt="{{ product.name }}" />
+          <div class="medicine-info">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p class="price">{{ product.price | currency }}</p>
+            <button class="buy-button" (click)="addToCart(product)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Cart Section -->
+    <section class="cart-section">
+      <h2>Your Cart</h2>
+      <div *ngIf="cart.length > 0">
+        <div *ngFor="let item of cart">
+          <p>{{ item.name }} - {{ item.price | currency }}</p>
+        </div>
+        <button class="checkout-button" (click)="checkout()">Bill</button>
+      </div>
+      <p *ngIf="cart.length === 0">Your cart is empty.</p>
+    </section>
+  </div>

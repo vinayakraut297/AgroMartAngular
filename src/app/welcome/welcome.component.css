@@ -212,3 +212,82 @@ footer .newsletter button:hover {
 .social-media a:hover {
   background-color: #ddd; /* Change background color on hover */
 }
+
+
+/* Hide the menu toggle button by default */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+}
+
+/* Default navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(10, 9, 9);
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  color: #4caf50;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+  }
+
+  nav.active {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    display: none;
+  }
+
+  #navbar.active {
+    display: block;
+  }
+}

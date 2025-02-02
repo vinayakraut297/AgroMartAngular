@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent {
-
+  toggleMenu() {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      navbar.classList.toggle('active');
+    }
+  }
 }

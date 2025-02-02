@@ -1,63 +1,131 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  category: string;
-}
+import { environment } from 'src/environment';
+import { Product, ProductService } from '../product.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
+  styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = [
-    { id: 1, name: 'Soil Enhancer', price: 750, imageUrl: 'assets/images/natural-fertilizer.jpg', category: 'Fertilizer' },
-    { id: 2, name: 'Pesticide Control Spray', price: 1200, imageUrl: 'assets/images/organic-pesticide.jpg', category: 'Pesticide' },
-    { id: 3, name: 'Epsom Salt', price: 100, imageUrl: 'assets/images/Epsom-Salt.webp', category: 'Medicine' },
-    { id: 4, name: 'TB Drugs for Crops', price: 1500, imageUrl: 'assets/images/Drugs-for-Crops.webp', category: 'Medicine' },
-    { id: 5, name: 'Plant Growth Booster', price: 950, imageUrl: 'assets/images/Plant-Growth-Booster.jpg', category: 'Medicine' },
-    { id: 6, name: 'Crop Disease Control Kit', price: 2200, imageUrl: 'assets/images/Crop-Disease-Control-Kit.jfif', category: 'Medicine' },
-    { id: 7, name: 'Antibiotics', price: 500, imageUrl: 'assets/images/antibiotics .webp', category: 'Medicine' },
-    { id: 8, name: 'Magnesium Sulfate', price: 300, imageUrl: 'assets/images/Magnesium-Sulfate.jfif', category: 'Medicine' },
-  ];
+  private apiUrl = environment.apiUrl;
+  user: any = null;
+  organicMedicines: Product[] = [];
+  cart: Product[] = [];
 
-  filteredProducts: Product[] = [];
-  searchTerm: string = '';
-  selectedSort: string = '';
-  cart: Product[] = []; // Array to store cart items
+  constructor(private http: HttpClient, private productService: ProductService,private router: Router) { }
 
-  ngOnInit() {
-    this.filteredProducts = [...this.products];
+  ngOnInit(): void {
+    const user = localStorage.getItem('user');
+    this.user = user ? JSON.parse(user) : null;
+    this.loadProducts();
   }
 
-  applyFilter() {
-    this.filteredProducts = this.products.filter((product) =>
-      product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.applySort(); // Ensure sorting is maintained
+  loadProducts(): void {
+    this.productService.getProducts().subscribe(products => {
+      this.organicMedicines = products;
+    });
   }
 
-  applySort() {
-    if (this.selectedSort === 'name') {
-      this.filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (this.selectedSort === 'priceAsc') {
-      this.filteredProducts.sort((a, b) => a.price - b.price);
-    } else if (this.selectedSort === 'priceDesc') {
-      this.filteredProducts.sort((a, b) => b.price - a.price);
+  addToCart(product: Product): void {
+    if (this.user) {
+
+      // this.http.post<{ message: string }>('http://localhost:8080/api/cart/add', {
+      this.http.post<{ message: string }>(`${this.apiUrl}/api/cart/add`, {
+        userId: this.user.id,
+        productId: product.id,
+        quantity: 1
+      }).subscribe({
+        next: (response) => {
+          if (response && response.message) {
+            this.cart.push(product);
+            alert(`${product.name} added to cart`);
+          }
+        },
+        error: (err) => {
+          console.error('Failed to add item to cart:', err);
+          alert('Error adding item to cart');
+        }
+      });
+    } else {
+      alert('Please log in to add items to your cart');
     }
   }
+  logout(): void {
+    localStorage.removeItem('user'); // Remove user data from local storage
+    this.user = null;               // Clear the user object in the component
+    alert('You have been logged out.');
+    this.router.navigate(['/welcome']);
 
-  addToCart(product: Product) {
-    const existingProduct = this.cart.find((p) => p.id === product.id);
-    if (!existingProduct) {
-      this.cart.push(product);
-      alert(`${product.name} has been added to the cart.`);
+  }
+
+  checkout(): void {
+    if (this.cart.length > 0) {
+      const cartForBill = [...this.cart];
+
+      // this.http.post('http://localhost:8080/api/cart/checkout', {
+      this.http.post(`${this.apiUrl}/api/cart/checkout`, {
+        userId: this.user.id,
+        items: this.cart
+      }).subscribe({
+        next: (response: any) => {
+          alert('Bill created successfully!');
+          this.cart = [];
+
+          const billWindow = window.open('', '_blank', 'width=800,height=600');
+          if (billWindow) {
+            billWindow.document.write(`
+            <html>
+              <head>
+                <title>Bill Details</title>
+                <style>
+                  body { font-family: Arial, sans-serif; margin: 20px; }
+                  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                  th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                  th { background-color: #f4f4f4; }
+                </style>
+              </head>
+              <body>
+                <h1>Bill Details</h1>
+                <p>Thank you for your purchase, <strong>${this.user.name}</strong>!</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${cartForBill.map(item => `
+                      <tr>
+                        <td>${item.name}</td>
+                        <td>${item.description}</td>
+                        <td>${item.price.toFixed(2)}</td>
+                      </tr>`).join('')}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" style="text-align:right;"><strong>Total:</strong></td>
+                      <td><strong>${cartForBill.reduce((total, item) => total + item.price, 0).toFixed(2)}</strong></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </body>
+            </html>
+          `);
+            billWindow.document.close();
+          }
+        },
+        error: (err) => {
+          console.error('Failed to create bill:', err);
+          alert('Error creating bill');
+        }
+      });
     } else {
-      alert(`${product.name} is already in the cart.`);
+      alert('Your cart is empty. Add some items before checking out.');
     }
   }
 }

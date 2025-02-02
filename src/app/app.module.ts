@@ -9,12 +9,10 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
-import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
-import { ProductsComponent } from './products/products.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddItemComponent } from './admin/add-item/add-item.component';
-import { Home1Component } from './home1/home1.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +21,10 @@ import { Home1Component } from './home1/home1.component';
     LoginComponent,
     RegisterComponent,
     AboutComponent,
-    HomeComponent,
     ContactComponent,
-    ProductsComponent,
     AdminComponent,
     AddItemComponent,
-    Home1Component,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

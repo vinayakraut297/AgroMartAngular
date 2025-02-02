@@ -1,118 +1,255 @@
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-
-body {
-    background-color: #f9f9f9;
-    font-family: 'Arial', sans-serif;
-}
-
-h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.alert-info {
-    background-color: #e7f3fe;
-    color: #31708f;
-    border: 1px solid #bce8f1;
-}
-
-.card {
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-img-top {
-    height: 180px;
-    object-fit: cover;
-}
-
-.card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #555;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border: none;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-}
-
-.form-control,
-.form-select {
-    border-radius: 8px;
-}
-
-.text-success {
-    color: #28a745 !important;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-.container {
+/* Container for the entire Home Component */
+.home-container {
+    padding: 20px;
     max-width: 1200px;
-    margin: auto;
-}
-
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-img-top {
-    height: 180px;
-    object-fit: cover;
-}
-
-.card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
     color: #333;
+    background-color: #f7f8f9; /* Light gray background for the entire page */
 }
 
-.card-text {
-    font-size: 1rem;
-    color: #555;
+/* Hero Section Styling */
+.hero-section {
+    background: url('src/assets/images/hero-background-home.jpg') center center / cover no-repeat;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-success {
-    background-color: #28a745;
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.shop-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1.2em;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
 }
 
-.btn-success:hover {
-    background-color: #218838;
+.shop-button:hover {
+    background-color: #45a049;
 }
+
+/* Organic Medicines Section Styling */
+.organic-medicines-section {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.organic-medicines-section h2 {
+    font-size: 2.5em;
+    color: #388E3C;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #4CAF50;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.medicine-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.medicine-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 28%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.medicine-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.medicine-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.medicine-info h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.medicine-info p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.buy-button {
+    background-color: #FF9800;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #fb8c00;
+}
+
+/* Other Medicines Section Styling */
+.other-medicines-section {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.other-medicines-section h2 {
+    font-size: 2.5em;
+    color: #388E3C;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #4CAF50;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.medicine-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.details-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #43a047;
+}
+
+/* TB Drug Usage Section Styling */
+.tb-drugs-section {
+    background-color: #f1f1f1;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.tb-drugs-section h2 {
+    font-size: 2.5em;
+    color: #388E3C;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #2196F3;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.tb-info {
+    font-size: 1.3em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.learn-more-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+    background-color: #1e88e5;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    .medicine-grid,
+    .medicine-list {
+        gap: 15px;
+    }
+
+    .medicine-card,
+    .details-button,
+    .buy-button,
+    .learn-more-button {
+        padding: 10px;
+    }
+}
+
+.logout-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000; 
+  }
+
+  .logout-button {
+    background-color: #0eebd8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  .logout-button:hover {
+    background-color: #e04343;
+  }
