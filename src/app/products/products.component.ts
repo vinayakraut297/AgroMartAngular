@@ -55,7 +55,7 @@ export class ProductsComponent implements OnInit {
   }
   logout(): void {
     localStorage.removeItem('user'); // Remove user data from local storage
-    this.user = null;               // Clear the user object in the component
+    // this.user = null;               // Clear the user object in the component
     alert('You have been logged out.');
     this.router.navigate(['/welcome']);
 

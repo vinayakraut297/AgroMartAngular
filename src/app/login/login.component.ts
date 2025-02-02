@@ -41,7 +41,7 @@ export class LoginComponent {
           console.log('Login successful', response);
           window.alert('Login successful');
           localStorage.setItem('user', JSON.stringify(response));
-          this.router.navigate(['/home1']);
+          this.router.navigate(['/products']);
         },
         error: (err) => {
           console.error('Login failed:', err);
