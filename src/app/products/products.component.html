@@ -36,6 +36,7 @@
     <div *ngIf="cart.length > 0">
       <div *ngFor="let item of cart">
         <p>{{ item.name }} - {{ item.price | currency }}</p>
+
       </div>
       <button class="checkout-button" (click)="checkout()">Bill</button>
     </div>

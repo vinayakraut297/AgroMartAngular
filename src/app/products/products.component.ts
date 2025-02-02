@@ -60,7 +60,7 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/welcome']);
 
   }
-
+ 
   checkout(): void {
     if (this.cart.length > 0) {
       const cartForBill = [...this.cart];
